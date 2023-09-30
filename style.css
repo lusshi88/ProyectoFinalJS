@@ -1,0 +1,20 @@
+body {
+  height: 100vh;
+  background-color: black;
+}
+header {
+  height: 20vh;
+}
+
+main {
+  height: 65vh;
+  
+}
+main h1 {
+  color: blue;
+  justify-content: center;
+}
+
+footer {
+  height: 15vh;
+}
