@@ -1,3 +1,8 @@
+// local storage
+localStorage.setItem("gustos",5422)
+
+//  !---------------------------------------------------------------->
+
 // capturo por medio del DOM
 let paginaPomelo = document.getElementById("gaseosasPomelo3");
 
@@ -38,8 +43,7 @@ function mostrarGustosPomelo(array){
           <p>Nombre: ${GaseosasdePomelo.nombre} </p> 
           <p>Litros: ${GaseosasdePomelo.litros}</p>
           <p>Precio:$${ GaseosasdePomelo.precio} </p>
-          <a  href="./pages/gaseosascola.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Comprar</a>
-       </div>
+          <button type="button"  class="btn btn-primary" class="daleloco" >COMPRAR</button>
   </div> `
   paginaPomelo.append(mostrargaseosaspomeloDiv)
   

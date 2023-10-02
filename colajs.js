@@ -1,3 +1,10 @@
+// local storage
+localStorage.setItem("gustos",5422)
+
+// aca borre un storage local que habia creado antes para probar :D
+localStorage.removeItem(`colajs`)
+//  !---------------------------------------------------------------->
+
 // capturo por medio del DOM
 let paginaCola = document.getElementById("gaseosasCola3");
 
@@ -22,12 +29,11 @@ class GaseosasdeCola {
     const estanteria = []
     estanteria.push(cola1,cola2,cola3,cola4)
 
-
     // Aca imprimo (con un for of) lo que se ve en gaseosascola.html con el DOM
 function mostrarGustosCola(array){
-    //for of: para recorrer un array posición a posición
-    for(let GaseosasdeCola of array){
   
+ //for of: para recorrer un array posición a posición
+    for(let GaseosasdeCola of array){
   let mostrargaseosascolaDiv = document.createElement("div")
   mostrargaseosascolaDiv.className = "col-12 col-md-6 col-lg-4 mb-5 "
       mostrargaseosascolaDiv.innerHTML = ` <div id="${GaseosasdeCola.id}" class="cardd " style="width: 18rem;">
@@ -37,7 +43,7 @@ function mostrarGustosCola(array){
           <p>Nombre: ${GaseosasdeCola.nombre} </p> 
           <p>Litros: ${GaseosasdeCola.litros}</p>
           <p>Precio:$${ GaseosasdeCola.precio} </p>
-          <a  href="./pages/gaseosascola.html" class="btn btn-primary btn-lg active" id="compraxd" role="button" aria-pressed="true">Comprar</a>
+          <button type="button"  class="btn btn-primary" id="daleloco" >COMPRAR</button>
        </div>
   </div> `
  
@@ -47,3 +53,15 @@ function mostrarGustosCola(array){
   }
   mostrarGustosCola(estanteria)
   
+
+  // Estoy probando los eventos :c 
+  function holacompra (){
+    alert ("Usted ha comprado" )
+  }
+  let botonCompra = document.getElementById("daleloco")
+  console.log(botonCompra);
+ botonCompra.addEventListener("click",holacompra)
+
+
+
+

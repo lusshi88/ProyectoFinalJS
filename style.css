@@ -18,3 +18,8 @@ main h1 {
 footer {
   height: 15vh;
 }
+
+.darkmode {
+  color: white;
+  background-color: black;
+}

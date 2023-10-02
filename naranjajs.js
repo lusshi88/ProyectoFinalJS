@@ -1,3 +1,8 @@
+// local storage
+localStorage.setItem("gustos",5422)
+
+//  !---------------------------------------------------------------->
+
 // capturo por medio del DOM
 let paginaNaranja = document.getElementById("gaseosasNaranja3");
 
@@ -38,7 +43,7 @@ function mostrarGustosNaranja(array){
           <p>Nombre: ${GaseosasdeNaranja.nombre} </p> 
           <p>Litros: ${GaseosasdeNaranja.litros}</p>
           <p>Precio:$${ GaseosasdeNaranja.precio} </p>
-          <a  href="./pages/gaseosascola.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Comprar</a>
+          <button type="button"  class="btn btn-primary" class="daleloco" >COMPRAR</button>
        </div>
   </div> `
   paginaNaranja.append(mostrargaseosasnaranjaDiv)
