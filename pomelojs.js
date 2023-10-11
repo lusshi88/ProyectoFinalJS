@@ -43,10 +43,31 @@ function mostrarGustosPomelo(array){
           <p>Nombre: ${GaseosasdePomelo.nombre} </p> 
           <p>Litros: ${GaseosasdePomelo.litros}</p>
           <p>Precio:$${ GaseosasdePomelo.precio} </p>
-          <button type="button"  class="btn btn-primary" class="daleloco" >COMPRAR</button>
+          <button type="button"  class="btn btn-primary" id="gaseosasid-${GaseosasdePomelo.id}" >COMPRAR</button>
   </div> `
   paginaPomelo.append(mostrargaseosaspomeloDiv)
   
+  // aplico eventos a los botones "comprar"
+  let botonCompraPomelo = document.getElementById(`gaseosasid-${GaseosasdePomelo.id}`)
+  botonCompraPomelo.addEventListener("click",noticarrito3)
+  // funcion para el evento
+  function noticarrito3(){
+    Toastify({
+      text: `Se agrego ${GaseosasdePomelo.nombre} al carrito ` ,
+      duration: 2500,
+      destination: "https://github.com/apvarun/toastify-js",
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      style: {
+        background: "linear-gradient(to right,red,blue,red )",
+        color: "white"
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
+
     }
   }
   mostrarGustosPomelo(estanteria)

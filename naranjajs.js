@@ -43,12 +43,39 @@ function mostrarGustosNaranja(array){
           <p>Nombre: ${GaseosasdeNaranja.nombre} </p> 
           <p>Litros: ${GaseosasdeNaranja.litros}</p>
           <p>Precio:$${ GaseosasdeNaranja.precio} </p>
-          <button type="button"  class="btn btn-primary" class="daleloco" >COMPRAR</button>
+          <button type="button"  class="btn btn-primary" id="gaseosasid-${GaseosasdeNaranja.id}" >COMPRAR</button>
        </div>
   </div> `
   paginaNaranja.append(mostrargaseosasnaranjaDiv)
   
+  // capturo el boton de la card
+  let botonCompraNaranja = document.getElementById(`gaseosasid-${GaseosasdeNaranja.id}`)
+  // aplico eventos a los botones "comprar"
+  botonCompraNaranja.addEventListener("click",noticarrito2)
+  // funcion para el evento
+  function noticarrito2 (){
+    Toastify({
+      text: `Se agrego ${GaseosasdeNaranja.nombre} al carrito ` ,
+      duration: 2500,
+      destination: "https://github.com/apvarun/toastify-js",
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      style: {
+        background: "linear-gradient(to right,red,blue,red )",
+        color: "white"
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
+
     }
   }
   mostrarGustosNaranja(estanteria)
+  
+  
+  
+  
+
   
