@@ -1,10 +1,6 @@
-// local storage
-localStorage.setItem("gustos",5422)
-
-//  !---------------------------------------------------------------->
-
 // capturo por medio del DOM
 let paginaPomelo = document.getElementById("gaseosasPomelo3");
+let buscador = document.getElementById ("buscador3");
 
 
 // Funciones exclusivas para los gustos de gaseosas del DOM!
@@ -31,6 +27,7 @@ class GaseosasdePomelo {
 
     // Aca imprimo (con un for of ) lo que se ve en gaseosaspomelo.html con el DOM
 function mostrarGustosPomelo(array){
+  paginaPomelo.innerHTML = ""
     //for of: para recorrer un array posición a posición
     for(let GaseosasdePomelo of array){
   
@@ -72,3 +69,12 @@ function mostrarGustosPomelo(array){
   }
   mostrarGustosPomelo(estanteria)
   
+  // funcion para buscar por input las gaseosas
+
+function buscainfo(buscado, array) {
+  let coincidencias = array.filter(gaseosa => gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase()))
+  mostrarGustosPomelo(coincidencias);
+}
+buscador.addEventListener("input", () => {
+  buscainfo(buscador.value, estanteria);
+});

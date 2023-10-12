@@ -1,10 +1,6 @@
-// local storage
-localStorage.setItem("gustos",5422)
-
-//  !---------------------------------------------------------------->
-
 // capturo por medio del DOM
 let paginaNaranja = document.getElementById("gaseosasNaranja3");
+let buscador = document.getElementById ("buscador2");
 
 
 // Funciones exclusivas para los gustos de gaseosas del DOM!
@@ -31,6 +27,7 @@ class GaseosasdeNaranja {
 
     // Aca imprimo (con un for of) lo que se ve en gaseosasnaranja.html con el DOM
 function mostrarGustosNaranja(array){
+  paginaNaranja.innerHTML = ""
     //for of: para recorrer un array posición a posición
     for(let GaseosasdeNaranja of array){
   
@@ -49,7 +46,8 @@ function mostrarGustosNaranja(array){
   paginaNaranja.append(mostrargaseosasnaranjaDiv)
   
   // capturo el boton de la card
-  let botonCompraNaranja = document.getElementById(`gaseosasid-${GaseosasdeNaranja.id}`)
+  
+  let botonCompraNaranja = document.getElementById(`gaseosasid-${GaseosasdeNaranja.id}`);
   // aplico eventos a los botones "comprar"
   botonCompraNaranja.addEventListener("click",noticarrito2)
   // funcion para el evento
@@ -75,7 +73,13 @@ function mostrarGustosNaranja(array){
   mostrarGustosNaranja(estanteria)
   
   
-  
-  
+  // funcion para buscar por input las gaseosas
 
+function buscainfo2(buscado, array) {
+  let coincidencias = array.filter(gaseosa => gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase()))
+  mostrarGustosNaranja(coincidencias);
+}
+buscador.addEventListener("input", () => {
+  buscainfo2(buscador.value, estanteria);
+});
   
