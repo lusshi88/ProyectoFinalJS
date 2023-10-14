@@ -1,6 +1,9 @@
 // capturo por medio del DOM
 let paginaCola = document.getElementById("gaseosasCola3");
 let buscador = document.getElementById("buscador");
+let modalCarrito = document.getElementById("modalCarrito");
+
+
 
 // Funciones exclusivas para los gustos de gaseosas del DOM!
 class GaseosasdeCola {
@@ -13,13 +16,7 @@ class GaseosasdeCola {
   }
 }
 //Instanciación de objetos:
-const cola1 = new GaseosasdeCola(
-  1,
-  "Coca cola - Sabor original",
-  898,
-  "2,5L",
-  "00180538.jpg"
-);
+const cola1 = new GaseosasdeCola(1,"Coca cola - Sabor original",898,"2,5L","00180538.jpg");
 const cola2 = new GaseosasdeCola(2, "Pepsi", 694, "3L", "00207054.jpg");
 const cola3 = new GaseosasdeCola(3, "Manaos", 400, "2,25L", "manaoscola.webp");
 const cola4 = new GaseosasdeCola(4, "Secco", 290, "2,25L", "seccocola.jpg");
@@ -28,7 +25,8 @@ const estanteria = [];
 estanteria.push(cola1, cola2, cola3, cola4);
 
 // carrito ----------------------------------------------------------------
-const productoscarrito = [];
+const productoscarrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
+console.log(productoscarrito);
 
 // Aca imprimo (con un for of) lo que se ve en gaseosascola.html con el DOM
 function mostrarGustosCola(array) {
@@ -48,30 +46,57 @@ function mostrarGustosCola(array) {
        </div>
   </div> `;
 
-    paginaCola.append(mostrargaseosascolaDiv);
-    let botonCompraCola = document.getElementById(
-      `btncompra${GaseosasdeCola.id}`
-    );
-    botonCompraCola.addEventListener("click", noticarrito);
-  }
+   paginaCola.append(mostrargaseosascolaDiv);
+
+// todo para el carrito ----------------------------------------------------------------
+let btncompras = document.getElementById(`btncompra${GaseosasdeCola.id}`);
+console.log(btncompras);
+
+btncompras.addEventListener("click", () => {
+agregarAlCarrito(GaseosasdeCola),noticarrito(GaseosasdeCola)
+  
+})
+}
+}
+function agregarAlCarrito(elementocola) {
+  let gaseosaduplicada = productoscarrito.find((cola)=> cola.id == elementocola.id)
+  
+  gaseosaduplicada == undefined ?
+
+  (// aca estoy pusheando al carrito
+  productoscarrito.push(elementocola),
+  // pusheo al storage
+  localStorage.setItem("carrito",JSON.stringify(productoscarrito)),
+  console.log(productoscarrito)) :
+  alert ("el libro ya existe en el chango")
 }
 
-mostrarGustosCola(estanteria);
-
-// funcion para buscar por input las gaseosas
-
-function buscainfo(buscado, array) {
-  let coincidencias = array.filter(gaseosa => gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase()))
-  mostrarGustosCola(coincidencias);
+function cargarProductosCarrito (array){
+  modalCarrito.innerHTML = "";
+array.forEach((elementoCarrito) => {
+  modalCarrito.innerHTML += `
+<div class="card border-primary mb-3" id =${elementoCarrito.id} style="max-width: 540px;">
+     <img class="card-img-top" height="250"   src="../imagenes/${elementoCarrito.imagen}" alt="">
+     <div class="card-body">
+            <h4 class="card-title">${elementoCarrito.nombre}</h4>
+            
+             <p class="card-text">$${elementoCarrito.precio}</p> 
+             <button class= "btn btn-danger" id=""><i class="fas fa-trash-alt"></i></button>
+     </div>    
+</div>
+`
+  
 }
-buscador.addEventListener("input", () => {
-  buscainfo(buscador.value, estanteria);
-});
+);
+}
 
-// funcion para el evento
-function noticarrito() {
+
+botonCarrito.addEventListener("click",()=>{cargarProductosCarrito(productoscarrito)})
+
+// Toastify para los botones de "comprar"
+function noticarrito(elemento) {
   Toastify({
-    text: `Se agrego ${GaseosasdeCola.nombre} al carrito `,
+    text: `Se agrego ${elemento.nombre} al carrito `,
     duration: 2500,
     destination: "https://github.com/apvarun/toastify-js",
     newWindow: true,
@@ -85,3 +110,21 @@ function noticarrito() {
     onClick: function () {}, // Callback after click
   }).showToast();
 }
+
+
+    // let botonCompraCola = document.getElementById(
+    //   `btncompra${GaseosasdeCola.id}`
+    // );
+ 
+mostrarGustosCola(estanteria);
+
+// funcion para buscar por input las gaseosas
+
+function buscainfo(buscado, array) {
+  let coincidencias = array.filter(gaseosa => gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase()))
+  mostrarGustosCola(coincidencias);
+}
+buscador.addEventListener("input", () => {
+  buscainfo(buscador.value, estanteria);
+});
+
