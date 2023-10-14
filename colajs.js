@@ -53,11 +53,14 @@ let btncompras = document.getElementById(`btncompra${GaseosasdeCola.id}`);
 console.log(btncompras);
 
 btncompras.addEventListener("click", () => {
-agregarAlCarrito(GaseosasdeCola),noticarrito(GaseosasdeCola)
+agregarAlCarrito(GaseosasdeCola)
   
 })
 }
 }
+
+
+
 function agregarAlCarrito(elementocola) {
   let gaseosaduplicada = productoscarrito.find((cola)=> cola.id == elementocola.id)
   
@@ -67,9 +70,24 @@ function agregarAlCarrito(elementocola) {
   productoscarrito.push(elementocola),
   // pusheo al storage
   localStorage.setItem("carrito",JSON.stringify(productoscarrito)),
-  console.log(productoscarrito)) :
-  alert ("el libro ya existe en el chango")
-}
+  Toastify({
+    text: `Se agrego ${elementocola.nombre} al carrito `,
+    duration: 2500,
+    newWindow: true,
+    close: true,
+    gravity: "bottom", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    style: {
+      background: "linear-gradient(to right,red,blue,red )",
+      color: "white",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast()):
+   noticarrito2(productoscarrito)
+} 
+ 
+ 
+
 
 function cargarProductosCarrito (array){
   modalCarrito.innerHTML = "";
@@ -98,7 +116,6 @@ function noticarrito(elemento) {
   Toastify({
     text: `Se agrego ${elemento.nombre} al carrito `,
     duration: 2500,
-    destination: "https://github.com/apvarun/toastify-js",
     newWindow: true,
     close: true,
     gravity: "bottom", // `top` or `bottom`
@@ -112,10 +129,24 @@ function noticarrito(elemento) {
 }
 
 
-    // let botonCompraCola = document.getElementById(
-    //   `btncompra${GaseosasdeCola.id}`
-    // );
- 
+function noticarrito2 (elemento) {
+  Toastify({
+    text: `Ya existe este pruducto en el carrito `,
+    duration: 2500,
+    newWindow: true,
+    close: true,
+    gravity: "bottom", // `top` or `bottom`
+    position: "right", // `left`, `center` or `right`
+    style: {
+      background: "linear-gradient(to right,red,blue,red )",
+      color: "white",
+    },
+    onClick: function () {}, // Callback after click
+  }).showToast();
+}
+
+
+   
 mostrarGustosCola(estanteria);
 
 // funcion para buscar por input las gaseosas
