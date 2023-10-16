@@ -2,6 +2,7 @@
 let paginaCola = document.getElementById("gaseosasCola3");
 let buscador = document.getElementById("buscador");
 let modalCarrito = document.getElementById("modalCarrito");
+let precioTotal = document.getElementById("precioTotal");
 
 
 
@@ -59,7 +60,19 @@ agregarAlCarrito(GaseosasdeCola)
 }
 }
 
+// función para calcular el total de los productos
+function calcularTotal (array) {
+const totalReduce = array.reduce(
+(acumulador, GaseosasdeCola) =>
+{return acumulador + GaseosasdeCola.precio},
+0  
+)
+precioTotal.innerHTML = `El total de su compra es $${totalReduce}`
+}
 
+
+
+// funcion cuando ponen mas de 1 gaseosa iguales
 
 function agregarAlCarrito(elementocola) {
   let gaseosaduplicada = productoscarrito.find((cola)=> cola.id == elementocola.id)
@@ -105,7 +118,8 @@ array.forEach((elementoCarrito) => {
 `
   
 }
-);
+)
+calcularTotal(array)
 }
 
 
