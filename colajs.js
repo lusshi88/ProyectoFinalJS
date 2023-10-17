@@ -125,24 +125,6 @@ calcularTotal(array)
 
 botonCarrito.addEventListener("click",()=>{cargarProductosCarrito(productoscarrito)})
 
-// Toastify para los botones de "comprar"
-function noticarrito(elemento) {
-  Toastify({
-    text: `Se agrego ${elemento.nombre} al carrito `,
-    duration: 2500,
-    newWindow: true,
-    close: true,
-    gravity: "bottom", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    style: {
-      background: "linear-gradient(to right,red,blue,red )",
-      color: "white",
-    },
-    onClick: function () {}, // Callback after click
-  }).showToast();
-}
-
-
 function noticarrito2 (elemento) {
   Toastify({
     text: `Ya existe este pruducto en el carrito `,

@@ -1,6 +1,10 @@
 // capturo por medio del DOM
 let paginaNaranja = document.getElementById("gaseosasNaranja3");
 let buscador = document.getElementById ("buscador2");
+let modalCarrito = document.getElementById("modalCarrito");
+let precioTotal = document.getElementById("precioTotal");
+
+
 
 
 // Funciones exclusivas para los gustos de gaseosas del DOM!
@@ -24,6 +28,9 @@ class GaseosasdeNaranja {
     const estanteria = []
     estanteria.push(naranja1,naranja2,naranja3,naranja4)
 
+    // carrito ----------------------------------------------------------------
+const productoscarrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
+console.log(productoscarrito);
 
     // Aca imprimo (con un for of) lo que se ve en gaseosasnaranja.html con el DOM
 function mostrarGustosNaranja(array){
@@ -40,37 +47,108 @@ function mostrarGustosNaranja(array){
           <p>Nombre: ${GaseosasdeNaranja.nombre} </p> 
           <p>Litros: ${GaseosasdeNaranja.litros}</p>
           <p>Precio:$${ GaseosasdeNaranja.precio} </p>
-          <button type="button"  class="btn btn-primary" id="gaseosasid-${GaseosasdeNaranja.id}" >COMPRAR</button>
+          <button type="button"  class="btn btn-primary" id="gaseosasid${GaseosasdeNaranja.id}" >COMPRAR</button>
        </div>
   </div> `
   paginaNaranja.append(mostrargaseosasnaranjaDiv)
   
-  // capturo el boton de la card
+// todo para el carrito ----------------------------------------------------------------
+let btncompras = document.getElementById(`gaseosasid${GaseosasdeNaranja.id}`);
+console.log(btncompras);
+
+btncompras.addEventListener("click", () => {
+agregarAlCarrito(GaseosasdeNaranja)
   
-  let botonCompraNaranja = document.getElementById(`gaseosasid-${GaseosasdeNaranja.id}`);
-  // aplico eventos a los botones "comprar"
-  botonCompraNaranja.addEventListener("click",noticarrito2)
-  // funcion para el evento
-  function noticarrito2 (){
+})
+ }
+  }
+  mostrarGustosNaranja(estanteria)
+  
+
+  // función para calcular el total de los productos
+function calcularTotal (array) {
+  const totalReduce = array.reduce(
+  (acumulador, GaseosasdeNaranja) =>
+  {return acumulador + GaseosasdeNaranja.precio},
+  0  
+  )
+  precioTotal.innerHTML = `El total de su compra es $${totalReduce}`
+  }
+  
+  
+  
+  // funcion cuando ponen mas de 1 gaseosa iguales
+  
+  function agregarAlCarrito(elementonaranja) {
+    let gaseosaduplicada = productoscarrito.find((naranja)=> naranja.id == elementonaranja.id)
+    
+    gaseosaduplicada == undefined ?
+  
+    (// aca estoy pusheando al carrito
+    productoscarrito.push(elementonaranja),
+    // pusheo al storage
+    localStorage.setItem("carrito",JSON.stringify(productoscarrito)),
     Toastify({
-      text: `Se agrego ${GaseosasdeNaranja.nombre} al carrito ` ,
+      text: `Se agrego ${elementonaranja.nombre} al carrito `,
       duration: 2500,
-      destination: "https://github.com/apvarun/toastify-js",
       newWindow: true,
       close: true,
       gravity: "bottom", // `top` or `bottom`
       position: "right", // `left`, `center` or `right`
       style: {
         background: "linear-gradient(to right,red,blue,red )",
-        color: "white"
+        color: "white",
       },
-      onClick: function(){} // Callback after click
+      onClick: function () {}, // Callback after click
+    }).showToast()):
+     noticarrito2(productoscarrito)
+  } 
+   
+   
+  
+  
+  function cargarProductosCarrito (array){
+    modalCarrito.innerHTML = "";
+  array.forEach((elementoCarrito) => {
+    modalCarrito.innerHTML += `
+  <div class="card border-primary mb-3" id =${elementoCarrito.id} style="max-width: 540px;">
+       <img class="card-img-top" height="250"   src="../imagenes/${elementoCarrito.imagen}" alt="">
+       <div class="card-body">
+              <h4 class="card-title">${elementoCarrito.nombre}</h4>
+              
+               <p class="card-text">$${elementoCarrito.precio}</p> 
+               <button class= "btn btn-danger" id=""><i class="fas fa-trash-alt"></i></button>
+       </div>    
+  </div>
+  `
+    
+  }
+  )
+  calcularTotal(array)
+  }
+  
+  
+  botonCarrito2.addEventListener("click",()=>{cargarProductosCarrito(productoscarrito)})
+  
+  function noticarrito2 (elemento) {
+    Toastify({
+      text: `Ya existe este pruducto en el carrito `,
+      duration: 2500,
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      style: {
+        background: "linear-gradient(to right,red,blue,red )",
+        color: "white",
+      },
+      onClick: function () {}, // Callback after click
     }).showToast();
   }
-
-    }
-  }
-  mostrarGustosNaranja(estanteria)
+  
+  
+     
+  mostrarGustosNaranja(estanteria);
   
   
   // funcion para buscar por input las gaseosas
