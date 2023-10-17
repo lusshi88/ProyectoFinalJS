@@ -126,8 +126,10 @@ array.forEach((elementoCarrito) => {
   borrarcard.remove()
 // lo borro del array
 let posicionArray = array.indexOf(elementoCarrito)
-console.log(posicionArray);
-
+array.splice(posicionArray,1)
+// lo borro del storage
+localStorage.setItem("carrito",JSON.stringify(array))
+calcularTotal(array)
 })
 
 }
