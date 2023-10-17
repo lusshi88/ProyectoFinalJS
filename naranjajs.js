@@ -3,7 +3,7 @@ let paginaNaranja = document.getElementById("gaseosasNaranja3");
 let buscador = document.getElementById ("buscador2");
 let modalCarrito = document.getElementById("modalCarrito");
 let precioTotal = document.getElementById("precioTotal");
-
+let botonCarrito2 = document.getElementById("botonCarrito2");
 
 
 
@@ -20,10 +20,10 @@ class GaseosasdeNaranja {
     }
     }
     //Instanciación de objetos: 
-    const naranja1 = new GaseosasdeNaranja (1,"Fanta", 432, "1,5L","fantanaranja.webp" );
-    const naranja2 = new GaseosasdeNaranja (2,"Manaos", 400, "2,25L","Gaseosa-Manaos-Naranja-225-Lts-_1.webp");
-    const naranja3 = new GaseosasdeNaranja (3,"Crush",321,"2,25L","302009-800-auto.webp");
-    const naranja4 = new GaseosasdeNaranja (4,"Secco",290,"2,25L","623417-800-auto.webp");
+    const naranja1 = new GaseosasdeNaranja (5,"Fanta", 432, "1,5L","fantanaranja.webp" );
+    const naranja2 = new GaseosasdeNaranja (6,"Manaos", 400, "2,25L","Gaseosa-Manaos-Naranja-225-Lts-_1.webp");
+    const naranja3 = new GaseosasdeNaranja (7,"Crush",321,"2,25L","302009-800-auto.webp");
+    const naranja4 = new GaseosasdeNaranja (8,"Secco",290,"2,25L","623417-800-auto.webp");
     
     const estanteria = []
     estanteria.push(naranja1,naranja2,naranja3,naranja4)
@@ -80,7 +80,7 @@ function calcularTotal (array) {
   // funcion cuando ponen mas de 1 gaseosa iguales
   
   function agregarAlCarrito(elementonaranja) {
-    let gaseosaduplicada = productoscarrito.find((naranja)=> naranja.id == elementonaranja.id)
+    let gaseosaduplicada = productoscarrito.find((naranja)=> naranja.id === elementonaranja.id)
     
     gaseosaduplicada == undefined ?
   
@@ -104,6 +104,21 @@ function calcularTotal (array) {
      noticarrito2(productoscarrito)
   } 
    
+  function noticarrito2 (elemento) {
+    Toastify({
+      text: `Ya existe este pruducto en el carrito `,
+      duration: 2500,
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      style: {
+        background: "linear-gradient(to right,red,blue,red )",
+        color: "white",
+      },
+      onClick: function () {}, // Callback after click
+    }).showToast();
+  }
    
   
   
@@ -130,21 +145,6 @@ function calcularTotal (array) {
   
   botonCarrito2.addEventListener("click",()=>{cargarProductosCarrito(productoscarrito)})
   
-  function noticarrito2 (elemento) {
-    Toastify({
-      text: `Ya existe este pruducto en el carrito `,
-      duration: 2500,
-      newWindow: true,
-      close: true,
-      gravity: "bottom", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      style: {
-        background: "linear-gradient(to right,red,blue,red )",
-        color: "white",
-      },
-      onClick: function () {}, // Callback after click
-    }).showToast();
-  }
   
   
      

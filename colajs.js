@@ -112,16 +112,30 @@ array.forEach((elementoCarrito) => {
             <h4 class="card-title">${elementoCarrito.nombre}</h4>
             
              <p class="card-text">$${elementoCarrito.precio}</p> 
-             <button class= "btn btn-danger" id=""><i class="fas fa-trash-alt"></i></button>
+             <button class= "btn btn-danger" id="btneliminar${elementoCarrito.id}"><i class="fas fa-trash-alt"></i></button>
      </div>    
 </div>
 `
-  
+
 }
 )
-calcularTotal(array)
-}
+array.forEach((elementoCarrito) => {
+  document.getElementById(`btneliminar${elementoCarrito.id}`).addEventListener("click", () => {
+  // lo borro del dom
+  let borrarcard = document.getElementById(`${elementoCarrito.id}`)
+  borrarcard.remove()
+// lo borro del array
+let posicionArray = array.indexOf(elementoCarrito)
+console.log(posicionArray);
 
+})
+
+}
+)
+
+calcularTotal(array)
+
+}
 
 botonCarrito.addEventListener("click",()=>{cargarProductosCarrito(productoscarrito)})
 
