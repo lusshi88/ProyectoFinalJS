@@ -54,7 +54,6 @@ function mostrarGustosNaranja(array){
   
 // todo para el carrito ----------------------------------------------------------------
 let btncompras = document.getElementById(`gaseosasid${GaseosasdeNaranja.id}`);
-console.log(btncompras);
 
 btncompras.addEventListener("click", () => {
 agregarAlCarrito(GaseosasdeNaranja)

@@ -31,7 +31,6 @@ class GaseosasdePomelo {
      // carrito ----------------------------------------------------------------
 const productoscarrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 console.log(productoscarrito);
-
     // Aca imprimo (con un for of ) lo que se ve en gaseosaspomelo.html con el DOM
 function mostrarGustosPomelo(array){
   paginaPomelo.innerHTML = ""
@@ -53,7 +52,7 @@ function mostrarGustosPomelo(array){
   
  // todo para el carrito ----------------------------------------------------------------
 let btncompras = document.getElementById(`gaseosasid${GaseosasdePomelo.id}`);
-console.log(btncompras);
+
 
 btncompras.addEventListener("click", () => {
 agregarAlCarrito(GaseosasdePomelo)

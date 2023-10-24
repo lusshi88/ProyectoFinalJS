@@ -1,0 +1,43 @@
+[
+    {
+        "id": 1,
+        "nombre": "coca cola - sabor original",
+        "categoria": "cola",
+        "precio": 898,
+        "litros": "2,5L",
+        "imagen": "00180538.jpg"
+
+    },
+    {
+        "id": 2,
+        "nombre": "Pepsi",
+        "categoria": "cola",
+        "precio": 694,
+        "litros": "3L",
+        "imagen": "00207054.jpg"
+
+    },
+    {
+        "id": 3,
+        "nombre": "Manaos",
+        "categoria": "cola",
+        "precio": 400,
+        "litros": "2,25L",
+        "imagen": "manaoscola.webp"
+
+    },
+    {
+        "id": 4,
+        "nombre": "Secco",
+        "categoria": "cola",
+        "precio": 290,
+        "litros": "2,25L",
+        "imagen": "seccocola.jpg"
+
+    }
+
+
+
+
+    
+]
