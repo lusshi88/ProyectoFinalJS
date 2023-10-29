@@ -1,3 +1,6 @@
+// Este JS , lo hice exclusivamente para que aparezcan todas las gaseosas en el carrito del index :) 
+
+
 // capturo por medio del DOM
 let paginaNaranja = document.getElementById("gaseosasNaranja3");
 let buscador = document.getElementById ("buscador2");
@@ -9,40 +12,6 @@ let botonCarrito2 = document.getElementById("botonCarrito2");
 const productoscarrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 console.log(productoscarrito);
 
-    // Aca imprimo (con un for of) lo que se ve en gaseosasnaranja.html con el DOM
-    const mostrarGustosNaranja = async (array) =>{
-      const resp = await fetch(`../naranja.json`);
-      const datagaseosa = await resp.json();
-      let estanteria2 = datagaseosa;
-  paginaNaranja.innerHTML = ""
-    //for of: para recorrer un array posición a posición
-    for(let gaseosaNar of estanteria2){
-  
-  let mostrargaseosasnaranjaDiv = document.createElement("div")
-  mostrargaseosasnaranjaDiv.className = "col-12 col-md-6 col-lg-4 mb-5 "
-      mostrargaseosasnaranjaDiv.innerHTML = ` <div id="${gaseosaNar.id}" class="cardd " style="width: 18rem;">
-      <img class="card-img-top img-fluid" style="height: 250px;"src="../imagenes/${gaseosaNar.imagen}" alt="Gaseosas de cola">
-      <div class="card-body">
-          <h4 class="card-title"></h4>
-          <p>Nombre: ${gaseosaNar.nombre} </p> 
-          <p>Litros: ${gaseosaNar.litros}</p>
-          <p>Precio:$${gaseosaNar.precio} </p>
-          <button type="button"  class="btn btn-primary" id="gaseosasid${gaseosaNar.id}" >COMPRAR</button>
-       </div>
-  </div> `
-  paginaNaranja.append(mostrargaseosasnaranjaDiv)
-  
-// todo para el carrito ----------------------------------------------------------------
-let btncompras = document.getElementById(`gaseosasid${gaseosaNar.id}`);
-
-btncompras.addEventListener("click", () => {
-agregarAlCarrito(gaseosaNar)
-  
-})
- }
-  }
-  mostrarGustosNaranja()
-  
 
   // función para calcular el total de los productos
 function calcularTotal (array) {
@@ -100,7 +69,7 @@ function calcularTotal (array) {
   }
    
   
-  // Esta función imprime las cards en el modal del carrito :)
+  
   function cargarProductosCarrito (array){
     modalCarrito.innerHTML = "";
   array.forEach((elementoCarrito) => {
@@ -143,13 +112,4 @@ function calcularTotal (array) {
   botonCarrito2.addEventListener("click",()=>{cargarProductosCarrito(productoscarrito)})
   
   
-  // funcion para buscar por input las gaseosas
-
-function buscainfo2(buscado, array) {
-  let coincidencias = array.filter(gaseosa => gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase()))
-  mostrarGustosNaranja(coincidencias);
-}
-buscador.addEventListener("input", () => {
-  buscainfo2(buscador.value, estanteria);
-});
-  
+ 

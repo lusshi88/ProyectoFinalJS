@@ -4,34 +4,17 @@ let buscador = document.getElementById("buscador");
 let modalCarrito = document.getElementById("modalCarrito");
 let precioTotal = document.getElementById("precioTotal");
 
-// Funciones exclusivas para los gustos de gaseosas del DOM!
-class GaseosasdeCola {
-  constructor(id, nombre, precio, litros, imagen) {
-    this.id = id;
-    this.nombre = nombre;
-    this.precio = precio;
-    this.litros = litros;
-    this.imagen = imagen;
-  }
-}
-// //Instanciación de objetos:
-// const cola1 = new GaseosasdeCola(1,"Coca cola - Sabor original",898,"2,5L","00180538.jpg");
-// const cola2 = new GaseosasdeCola(2, "Pepsi", 694, "3L", "00207054.jpg");
-// const cola3 = new GaseosasdeCola(3, "Manaos", 400, "2,25L", "manaoscola.webp");
-// const cola4 = new GaseosasdeCola(4, "Secco", 290, "2,25L", "seccocola.jpg");
-
-const estanteria = [];
-// estanteria.push(cola1, cola2, cola3, cola4);
-
 // carrito ----------------------------------------------------------------
-// const productoscarrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
+const productoscarrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
 // console.log(productoscarrito);
 
 const mostrarGustosCola = async (array) => {
   const resp = await fetch(`../cola.json`);
   const datagaseosa = await resp.json();
-
   let estanteria2 = datagaseosa;
+ 
+
+  
 
   // Aca imprimo (con un for of) lo que se ve en gaseosascola.html con el DOM
 
@@ -55,21 +38,23 @@ const mostrarGustosCola = async (array) => {
     paginaCola.append(mostrargaseosascolaDiv);
 
     // todo para el carrito ----------------------------------------------------------------
-    // let btncompras = document.getElementById(`btncompra${GaseosasdeCola.id}`);
+    let btncompras = document.getElementById(`btncompra${gaseosa.id}`);
+    
 
-    // btncompras.addEventListener("click", () => {
-    // agregarAlCarrito(GaseosasdeCola)
-
-    // })
+    btncompras.addEventListener("click", () => {
+    agregarAlCarrito(gaseosa)
+   
+    })
+  
   }
 };
 mostrarGustosCola();
 
 // función para calcular el total de los productos
 function calcularTotal(array) {
-  const totalReduce = array.reduce((acumulador, GaseosasdeCola) => {
-    return acumulador + GaseosasdeCola.precio;
-  }, 0);
+  const totalReduce = array.reduce((acumulador, gaseosa) => {
+    return acumulador + gaseosa.precio},
+     0);
   precioTotal.innerHTML = `El total de su compra es $${totalReduce}`;
 }
 
@@ -99,7 +84,25 @@ function agregarAlCarrito(elementocola) {
         onClick: function () {}, // Callback after click
       }).showToast())
     : noticarrito2(productoscarrito);
+  }
 
+  function noticarrito2(elemento) {
+    Toastify({
+      text: `Ya existe este pruducto en el carrito `,
+      duration: 2500,
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      style: {
+        background: "linear-gradient(to right,red,blue,red )",
+        color: "white",
+      },
+      onClick: function () {}, // Callback after click
+    }).showToast();
+  }
+
+  // Esta función imprime las cards en el modal del carrito :)
   function cargarProductosCarrito(array) {
     modalCarrito.innerHTML = "";
     array.forEach((elementoCarrito) => {
@@ -138,21 +141,6 @@ function agregarAlCarrito(elementocola) {
     cargarProductosCarrito(productoscarrito);
   });
 
-  function noticarrito2(elemento) {
-    Toastify({
-      text: `Ya existe este pruducto en el carrito `,
-      duration: 2500,
-      newWindow: true,
-      close: true,
-      gravity: "bottom", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      style: {
-        background: "linear-gradient(to right,red,blue,red )",
-        color: "white",
-      },
-      onClick: function () {}, // Callback after click
-    }).showToast();
-  }
 
   // mostrarGustosCola(estanteria2);
 
@@ -160,11 +148,16 @@ function agregarAlCarrito(elementocola) {
 
   function buscainfo(buscado, array) {
     let coincidencias = array.filter((gaseosa) =>
-      gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase())
-    );
-    mostrarGustosCola(coincidencias);
+      gaseosa.nombre.toLowerCase().includes(buscado.toLowerCase()))
+    mostrarGustosCola();
   }
+  
+
+  const inputxd = async () => {
+    const resp = await fetch(`../cola.json`);
+    const datagaseosa3 = await resp.json();
+    let estanteria3 = datagaseosa3;
   buscador.addEventListener("input", () => {
-    buscainfo(buscador.value, estanteria);
+    buscainfo(buscador.value, estanteria3);
   });
-}
+  }

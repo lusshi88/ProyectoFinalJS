@@ -1,0 +1,39 @@
+[
+    {
+        "id": 9,
+        "nombre": "Crush",
+        "precio": 413,
+        "litros": "2,25L",
+        "imagen": "7790895007392_E01.webp"
+
+    },
+    {
+        "id": 10,
+        "nombre": "Schweppes",
+        "precio": 600,
+        "litros": "1,5L",
+        "imagen": "whatsapp-image-2021-08-25-at-11-12-461-a04696eaceadd78ccc16299008628662-640-0.jpeg"
+
+    },
+    {
+        "id": 11,
+        "nombre": "Manaos",
+        "precio": 321,
+        "litros": "2,25L",
+        "imagen": "Gaseosa-Manaos-Pomelo-225-Lts-_1.webp"
+
+    },
+    {
+        "id": 12,
+        "nombre": "Secco- Intenso",
+        "precio": 290,
+        "litros": "2,25L",
+        "imagen": "secco-pomelo1-555540c6c51a6b2d1216139349617802-1024-1024.gif"
+
+    }
+
+
+
+
+    
+]

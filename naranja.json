@@ -1,0 +1,39 @@
+[
+    {
+        "id": 5,
+        "nombre": "Fanta",
+        "precio": 432,
+        "litros": "1,5L",
+        "imagen": "fantanaranja.webp"
+
+    },
+    {
+        "id": 6,
+        "nombre": "Manaos",
+        "precio": 400,
+        "litros": "2,25L",
+        "imagen": "Gaseosa-Manaos-Naranja-225-Lts-_1.webp"
+
+    },
+    {
+        "id": 7,
+        "nombre": "Crush",
+        "precio": 321,
+        "litros": "2,25L",
+        "imagen": "302009-800-auto.webp"
+
+    },
+    {
+        "id": 8,
+        "nombre": "Secco",
+        "precio": 290,
+        "litros": "2,25L",
+        "imagen": "623417-800-auto.webp"
+
+    }
+
+
+
+
+    
+]
